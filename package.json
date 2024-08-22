@@ -1,24 +1,16 @@
 {
-  "name": "carparkingbackend",
+  "name": "ci-cd-practices",
   "version": "1.0.0",
-  "description": "this is a backend for carparking system",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
-    "carparkingbackend": "file:",
-    "cores": "^0.8.5",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "mongodb": "^6.8.0",
-    "mongoose": "^8.5.2"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "supertest": "^7.0.0"
+    "express": "^4.19.2"
   }
 }

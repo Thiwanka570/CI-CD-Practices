@@ -1,25 +1,31 @@
-const mongoose = require('mongoose');
-const app = require('./app');
-require('dotenv').config();
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const PORT = process.env.PORT; 
-const DB_URI = process.env.MONGO_URI;
+// Sample data (you can replace this with actual database data)
+const users = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
+];
 
-if (!DB_URI) {
-    console.error('No MongoDB URI found in environment variables.');
-    process.exit(1); 
-}
+// Home route
+app.get('/', (req, res) => {
+    res.send('Welcome to the Simple API!');
+});
 
-mongoose.connect(DB_URI)
-    .then(() => {
-        console.log('Connected to MongoDB');
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    })
-    .catch(err => {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1);
-    });
+// GET request to fetch all users
+app.get('/api/users', (req, res) => {
+    res.json(users);
+});
 
-    
+// GET request to fetch a specific user by ID
+app.get('/api/users/:id', (req, res) => {
+    const user = users.find(u => u.id === parseInt(req.params.id));
+    if (!user) return res.status(404).send('User not found');
+    res.json(user);
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
